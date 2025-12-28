@@ -5,7 +5,6 @@ Nama anggota :
 -hafidz amiruddin
 -bayu prasetyo
 -al zaki
--ruben andi kaka
 -revan dwi kurniadi 
 
 Source code sturktur data pendaftaran & transaksi pembayaran lapangan 
