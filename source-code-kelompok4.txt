@@ -1,5 +1,5 @@
 Nama Kelompok     :  KELOMPOK 4 
-Kelas                       :   01TPLP001
+Kelas             :  01TPLP001
 Nama anggota :
 -alvin atourrahman 
 -hafidz amiruddin
@@ -170,6 +170,50 @@ int main() {
     return 0;
 }
 
+
+========================================
+ SISTEM MANAJEMEN PENDAFTARAN & PEMBAYARAN
+          Kelompok 4 - 01TPLP001
+========================================
+
+--- INPUT DATA PENDAFTAR ---
+Nama  : bayu
+NIM   : 123456123456
+? Data valid.
+? Data pendaftar berhasil disimpan.
+
+--- MENU TRANSAKSI ---
+1. Bayar
+2. Lihat Riwayat Transaksi
+3. Keluar
+Pilihan: 1
+
+--- INPUT PEMBAYARAN ---
+Nama   : bayu
+Nominal: 50000
+? Pembayaran valid.
+? Pembayaran berhasil disimpan.
+
+--- MENU TRANSAKSI ---
+1. Bayar
+2. Lihat Riwayat Transaksi
+3. Keluar
+Pilihan: 2
+
+--- RIWAYAT TRANSAKSI ---
+1. bayu - Rp50000.00 (LUNAS)
+
+--- MENU TRANSAKSI ---
+1. Bayar
+2. Lihat Riwayat Transaksi
+3. Keluar
+Pilihan: 3
+
+Terima kasih telah menggunakan sistem.
+
+--------------------------------
+Process exited after 145.6 seconds with return value 0
+Press any key to continue . . .
 
 
  
