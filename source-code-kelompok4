@@ -1,0 +1,181 @@
+Nama Kelompok     :  KELOMPOK 4 
+Kelas                       :   01TPLP001
+Nama anggota :
+-alvin atourrahman 
+-hafidz amiruddin
+-bayu prasetyo
+-al zaki
+-ruben andi kaka
+-revan dwi kurniadi 
+
+Source code sturktur data pendaftaran & transaksi pembayaran lapangan 
+
+	#include <iostream>
+#include <vector>
+#include <string>
+#include <iomanip>
+#include <limits>
+
+using namespace std;
+
+// Struktur untuk data pendaftaran
+struct Pendaftar {
+    string nama;
+    string nim;
+    string kelompok;
+    string kelas;
+};
+
+// Struktur untuk transaksi pembayaran
+struct Transaksi {
+    string nama;
+    double nominal;
+    string status;
+};
+
+// Fungsi untuk membersihkan buffer input
+void clearBuffer() {
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+}
+
+// Fungsi untuk menampilkan header
+void tampilkanHeader() {
+    cout << "========================================\n";
+    cout << " SISTEM MANAJEMEN PENDAFTARAN & PEMBAYARAN\n";
+    cout << "          Kelompok 4 - 01TPLP001\n";
+    cout << "========================================\n";
+}
+
+// Fungsi untuk input data pendaftar
+Pendaftar inputDataPendaftar() {
+    Pendaftar p;
+    cout << "\n--- INPUT DATA PENDAFTAR ---\n";
+    cout << "Nama  : ";
+    getline(cin, p.nama);
+    cout << "NIM   : ";
+    getline(cin, p.nim);
+    p.kelompok = "4";
+    p.kelas = "01TPLP001";
+    return p;
+}
+
+// Fungsi untuk validasi data pendaftar
+bool validasiDataPendaftar(const Pendaftar& p) {
+    if (p.nama.empty() || p.nim.empty()) {
+        cout << "? Nama dan NIM tidak boleh kosong!\n";
+        return false;
+    }
+    if (p.nim.length() != 12) {
+        cout << "? NIM harus 12 digit!\n";
+        return false;
+    }
+    cout << "? Data valid.\n";
+    return true;
+}
+
+// Fungsi untuk menampilkan menu
+int tampilkanMenu() {
+    int pilihan;
+    cout << "\n--- MENU TRANSAKSI ---\n";
+    cout << "1. Bayar\n";
+    cout << "2. Lihat Riwayat Transaksi\n";
+    cout << "3. Keluar\n";
+    cout << "Pilihan: ";
+    cin >> pilihan;
+    clearBuffer();
+    return pilihan;
+}
+
+// Fungsi untuk input transaksi pembayaran
+Transaksi inputTransaksi(const string& nama) {
+    Transaksi t;
+    t.nama = nama;
+    cout << "\n--- INPUT PEMBAYARAN ---\n";
+    cout << "Nama   : " << nama << endl;
+    cout << "Nominal: ";
+    cin >> t.nominal;
+    clearBuffer();
+    t.status = "LUNAS";
+    return t;
+}
+
+// Fungsi untuk validasi pembayaran
+bool validasiPembayaran(double nominal) {
+    if (nominal <= 0) {
+        cout << "? Nominal tidak valid!\n";
+        return false;
+    }
+    cout << "? Pembayaran valid.\n";
+    return true;
+}
+
+// Fungsi utama
+int main() {
+    vector<Pendaftar> pendaftarList;
+    vector<Transaksi> transaksiList;
+    Pendaftar pendaftar;
+    Transaksi transaksi;
+    bool dataValid = false;
+    int pilihan;
+
+    tampilkanHeader();
+
+    // Input data pendaftar dengan validasi
+    do {
+        pendaftar = inputDataPendaftar();
+        dataValid = validasiDataPendaftar(pendaftar);
+    } while (!dataValid);
+
+    pendaftarList.push_back(pendaftar);
+    cout << "? Data pendaftar berhasil disimpan.\n";
+
+    // Menu transaksi
+    do {
+        pilihan = tampilkanMenu();
+
+        switch (pilihan) {
+            case 1: // Bayar
+                do {
+                    transaksi = inputTransaksi(pendaftar.nama);
+                } while (!validasiPembayaran(transaksi.nominal));
+                transaksiList.push_back(transaksi);
+                cout << "? Pembayaran berhasil disimpan.\n";
+                break;
+
+            case 2: // Lihat riwayat
+                cout << "\n--- RIWAYAT TRANSAKSI ---\n";
+                if (transaksiList.empty()) {
+                    cout << "Belum ada transaksi.\n";
+                } else {
+                    for (size_t i = 0; i < transaksiList.size(); i++) {
+                        cout << i + 1 << ". " 
+                             << transaksiList[i].nama << " - Rp" 
+                             << fixed << setprecision(2) << transaksiList[i].nominal 
+                             << " (" << transaksiList[i].status << ")\n";
+                    }
+                }
+                break;
+
+            case 3: // Keluar
+                cout << "\nTerima kasih telah menggunakan sistem.\n";
+                break;
+
+            default:
+                cout << "? Pilihan tidak valid.\n";
+                break;
+        }
+    } while (pilihan != 3);
+
+    return 0;
+}
+
+
+
+ 
+ 
+
+
+
+
+
